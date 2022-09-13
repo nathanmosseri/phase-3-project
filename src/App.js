@@ -7,6 +7,7 @@ import MyProfile from './components/MyProfile';
 import NavBar from './components/NavBar';
 import SearchUsers from './components/SearchUsers';
 import PhasePosts from './components/PhasePosts';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path = '/phase-posts'>
           <PhasePosts />
+        </Route>
+        <Route path = '*'>
+          <h1>PAGE NOT FOUND</h1>
         </Route>
       </Switch>
     </div>
