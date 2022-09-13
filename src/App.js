@@ -3,8 +3,10 @@ import './App.css';
 import MainPage from './components/MainPage';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import AccountSettings from './components/AccountSettings';
+import MyProfile from './components/MyProfile';
 import NavBar from './components/NavBar';
+import SearchUsers from './components/SearchUsers';
+import PhasePosts from './components/PhasePosts';
 
 function App() {
   return (
@@ -20,8 +22,14 @@ function App() {
         <Route path='/sign-up'>
           <SignUp/>
         </Route>
-        <Route path='/account-settings'>
-          <AccountSettings/>
+        <Route path='/my-profile'>
+          <MyProfile/>
+        </Route>
+        <Route path = '/search-users'>
+          <SearchUsers />
+        </Route>
+        <Route path = '/phase-posts'>
+          <PhasePosts />
         </Route>
       </Switch>
     </div>

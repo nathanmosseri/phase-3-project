@@ -8,8 +8,14 @@ const NavBar = () => {
             <NavLink to='/' exact>
                 <p>Home</p>
             </NavLink>
-            <NavLink to='/account-settings'>
-                <p>Account Settings</p>
+            <NavLink to='/phase-posts'>
+                <p>Phase Posts</p>
+            </NavLink>
+            <NavLink to='/search-users'>
+                <p>Search Users</p>
+            </NavLink>
+            <NavLink to='/my-profile'>
+                <p>My Profile</p>
             </NavLink>
         </div>
     )
