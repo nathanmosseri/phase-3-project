@@ -7,22 +7,35 @@ import MyProfile from './components/MyProfile';
 import NavBar from './components/NavBar';
 import SearchUsers from './components/SearchUsers';
 import PhasePosts from './components/PhasePosts';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userInfo, setUserInfo] = useState([])
+
+  useEffect(() => {
+  fetch('http://localhost:9292/users').then(res => res.json())
+  .then((userData) => {
+    setUserInfo(userData)
+  })
+}, [])
+
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
       <Switch>
-        <Route exact path='/'>
-          <MainPage />
-        </Route>
         <Route path='/sign-in'>
-          <SignIn/>
+          <SignIn setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
         </Route>
         <Route path='/sign-up'>
-          <SignUp/>
+          <SignUp setIsLoggedIn={setIsLoggedIn}/>
         </Route>
-        <Route path='/my-profile'>
+        <Route exact path='/'>
+          <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo}/>
+        </Route>
+        {isLoggedIn ? <>
+        <Route path='/my-profile' isLoggedIn={isLoggedIn}>
           <MyProfile/>
         </Route>
         <Route path = '/search-users'>
@@ -30,7 +43,8 @@ function App() {
         </Route>
         <Route path = '/phase-posts'>
           <PhasePosts />
-        </Route>
+        </Route> 
+        </>: ""}
       </Switch>
     </div>
   );
