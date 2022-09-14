@@ -1,6 +1,9 @@
 import React from "react";
 
-const PhasePosts = () => {
+const PhasePosts = ({userInfo, oneUserData}) => {
+
+    
+
 
     return (
         <h1>Posts specific to your phase</h1>

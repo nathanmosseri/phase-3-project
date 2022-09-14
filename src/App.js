@@ -15,7 +15,10 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userInfo, setUserInfo] = useState([])
-  const [oneUserData, setOneUserData] = useState({})
+  const [oneUserData, setOneUserData] = useState([])
+  // const [userFollowingData, setUserFollowingData] = useState([])
+
+  console.log(oneUserData.id)
 
   useEffect(() => {
   fetch('http://localhost:9292/users').then(res => res.json())
@@ -23,6 +26,20 @@ function App() {
     setUserInfo(userData)
   })
 }, [])
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:9292/followers/${oneUserData.id}`).then(res => res.json())
+  //   .then((following) => {
+  //     // setUserFollowingData(following.following_id)
+  //     setUserFollowingData(following)
+  //   })
+  // },[])
+
+  let usersNames = []
+  userInfo.map((user) => {
+    usersNames.unshift(user.name)
+    return usersNames
+  })
 
 
 return (
@@ -41,7 +58,7 @@ return (
         </div>
         </Route>
         <Route path='/general-posts'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> :  <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo}/>}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> :  <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo} usersNames={usersNames} />}
         </Route>  
         <Route path='/my-profile' >
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <MyProfile isLoggedIn={isLoggedIn}/>}
@@ -50,7 +67,7 @@ return (
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchUsers />}
         </Route>
         <Route exact path = '/'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts />}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData}  />}
         </Route>
         <Route path = '*'>
           <h1>PAGE NOT FOUND</h1>
