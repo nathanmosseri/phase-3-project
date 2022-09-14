@@ -14,6 +14,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userInfo, setUserInfo] = useState([])
+  const [oneUserData, setOneUserData] = useState({})
 
   useEffect(() => {
   fetch('http://localhost:9292/users').then(res => res.json())
@@ -26,9 +27,10 @@ function App() {
 let logInVariable = isLoggedIn ? (
         <>
         <NavBar setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
+        <div className='full-screen-container'>
         <Switch>
         <Route path='/sign-in'>
-          <SignIn setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
+          <SignIn setOneUserData={setOneUserData} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path='/sign-up'>
           <SignUp setIsLoggedIn={setIsLoggedIn}/>
@@ -49,12 +51,13 @@ let logInVariable = isLoggedIn ? (
           <h1>PAGE NOT FOUND</h1>
         </Route> */}
         </Switch>
+        </div>
         </>
 ) : (
   <>
       <Switch>
         <Route path='/sign-in'>
-          <SignIn setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
+          <SignIn setOneUserData={setOneUserData} setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
         </Route>
         <Route path='/sign-up'>
           <SignUp setIsLoggedIn={setIsLoggedIn}/>
