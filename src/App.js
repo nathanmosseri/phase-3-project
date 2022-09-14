@@ -32,7 +32,7 @@ return (
           <SignIn setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
         </Route>
         <Route path='/sign-up'>
-          <SignUp setIsLoggedIn={setIsLoggedIn}/>
+          <SignUp setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
         </Route>
         <Route path='/general-posts'>
           {!isLoggedIn ? <Redirect to='/sign-in'/> :  <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo}/>}
