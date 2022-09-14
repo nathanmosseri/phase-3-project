@@ -16,9 +16,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userInfo, setUserInfo] = useState([])
   const [oneUserData, setOneUserData] = useState([])
+  const [phaseData, setPhaseData] = useState([])
+  const [phasePosts, setPhasePosts] = useState([])
   // const [userFollowingData, setUserFollowingData] = useState([])
 
-  console.log(oneUserData.id)
 
   useEffect(() => {
   fetch('http://localhost:9292/users').then(res => res.json())
@@ -26,6 +27,18 @@ function App() {
     setUserInfo(userData)
   })
 }, [])
+
+  useEffect(() => {
+      fetch(`http://localhost:9292/phases-with-posts/${oneUserData.phase_id}`).then(res => res.json())
+      .then((phase) => {
+        // console.log(phase)
+          setPhaseData(phase.phase)
+          setPhasePosts(phase.posts)
+          
+        })
+    }, [isLoggedIn])
+
+  
 
   // useEffect(() => {
   //   fetch(`http://localhost:9292/followers/${oneUserData.id}`).then(res => res.json())
@@ -63,7 +76,7 @@ return (
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchUsers />}
         </Route>
         <Route exact path = '/'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData}  />}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData} phaseData={phaseData} phasePosts={phasePosts} />}
         </Route>
         <Route path = '*'>
           <h1>PAGE NOT FOUND</h1>
