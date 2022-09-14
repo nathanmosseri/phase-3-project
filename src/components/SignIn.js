@@ -25,8 +25,6 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
     //function to update values of userName and password
     const handleChange = function (e) {
         let { name, value } = e.target
-        console.log(userEmail)
-        console.log(password)
         if (name === "password") { setPassword((password) => password = value) }
         else { setNewUser((userEmail) => userEmail = value) }
     }
@@ -45,9 +43,8 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
         userDataBase.forEach((oneObj) => {
             if (oneObj.email === userEmail) {
                 idUserName = oneObj.id;
-                console.log(idUserName)
             } else {
-                console.log('not match')
+                
             }
         })
 
@@ -55,9 +52,6 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
         userDataBase.forEach((oneObj) => {
             if (oneObj.password === password) {
                 idPassword.push(oneObj.id);
-                console.log(idPassword)
-            } else {
-                console.log('not match')
             }
         })
         // idUserName === idPassword
@@ -68,7 +62,6 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
             fetch(`http://localhost:9292/users/${idUserName}`)
                 .then((response) => response.json())
                 .then(data => {
-                    console.log(data)
                     setOneUserData(data)
                     setIsLoggedIn(true)
                     setNewUser("")
@@ -78,7 +71,7 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
                 })
         } else { alert('Your username or password is incorrect. Please try again.') }
     }
-
+    
     return (
         <div className="full-screen-container">
             <div className="login-container">

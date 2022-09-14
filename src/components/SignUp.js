@@ -28,7 +28,6 @@ const SignUp = ({setIsLoggedIn}) => {
             [e.target.name]: e.target.value
         })
     }
-    console.log(signUpForm)
 
     const handleSubmit = (e) => {
         e.preventDefault()
