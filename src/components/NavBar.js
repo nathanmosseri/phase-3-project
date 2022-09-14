@@ -11,8 +11,8 @@ const NavBar = () => {
         <Container>
           <Navbar.Brand as={NavLink} to="/" exact>Navbar</Navbar.Brand>
           <Nav className="text-center mt-4 mb-4">
-            <Nav.Link as={NavLink} to="/" exact>General Posts</Nav.Link>
-            <Nav.Link as={NavLink} to="/phase-posts">Phase Posts</Nav.Link>
+            <Nav.Link as={NavLink} to="/general-posts">General Posts</Nav.Link>
+            <Nav.Link as={NavLink} to="/" exact>Phase Posts</Nav.Link>
             <Nav.Link as={NavLink} to="/search-users">Search Users</Nav.Link>
             </Nav>
             <Nav className="justify-content-end">

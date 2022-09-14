@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import MainPage from './components/MainPage';
 import SignUp from './components/SignUp';
@@ -9,6 +9,7 @@ import SearchUsers from './components/SearchUsers';
 import PhasePosts from './components/PhasePosts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
+
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
 }, [])
 
 
-let logInVariable = isLoggedIn ? (
+return (
         <>
         <NavBar setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
         <div className='full-screen-container'>
@@ -35,27 +36,27 @@ let logInVariable = isLoggedIn ? (
         <Route path='/sign-up'>
           <SignUp setIsLoggedIn={setIsLoggedIn}/>
         </Route>
-        <Route exact path='/'>
-          <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo}/>
-        </Route>
-        <Route path='/my-profile' isLoggedIn={isLoggedIn}>
-          <MyProfile/>
+        <Route path='/general-posts'>
+          {!isLoggedIn ? <Redirect to='/sign-in'/> :  <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo}/>}
+        </Route>  
+        <Route path='/my-profile' >
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <MyProfile isLoggedIn={isLoggedIn}/>}
         </Route>
         <Route path = '/search-users'>
-          <SearchUsers />
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchUsers />}
         </Route>
-        <Route path = '/phase-posts'>
-          <PhasePosts />
+        <Route exact path = '/'>
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts />}
         </Route>
-        {/* <Route path = '*'>
+        <Route path = '*'>
           <h1>PAGE NOT FOUND</h1>
-        </Route> */}
+        </Route>
         </Switch>
         </div>
         </>
-) : (
-  <>
-      <Switch>
+
+  )
+      {/* <Switch>
         <Route path='/sign-in'>
           <SignIn setOneUserData={setOneUserData} setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
         </Route>
@@ -65,15 +66,14 @@ let logInVariable = isLoggedIn ? (
         <Route exact path='/'>
           <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo}/>
         </Route>
-      </Switch>
-  </>
-);
+      </Switch> */}
 
-  return (
-    <div className="App">
-      {logInVariable}
-    </div>
-  );
+  // return (
+  //   <div className="App">
+  //     {logInVariable}
+  //   </div>
+    
+  // );
 }
 
 export default App;
