@@ -31,10 +31,14 @@ return (
         <div className='full-screen-container'>
         <Switch>
         <Route path='/sign-in'>
+        <div className='login-signup'>
           <SignIn setOneUserData={setOneUserData} setIsLoggedIn={setIsLoggedIn} />
+        </div>
         </Route>
         <Route path='/sign-up'>
+        <div className='login-signup'>
           <SignUp setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
+        </div>
         </Route>
         <Route path='/general-posts'>
           {!isLoggedIn ? <Redirect to='/sign-in'/> :  <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo}/>}

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Form , Button} from 'react-bootstrap';
+import { Link, NavLink } from "react-router-dom";
 
 const SignUp = ({setIsLoggedIn}) => {
 
@@ -52,23 +54,67 @@ const SignUp = ({setIsLoggedIn}) => {
             <option key={i} value={phase.id} name='phase_id'>{phase.phase}</option>
         )
     })
-    
     return (
-        <div>
-            <h1>SignUp</h1>
-            <form onSubmit={handleSubmit}>
-                <input name="name" placeholder="Enter full name" onChange={handleChange}/>
-                <input name="password" placeholder="Create a password" onChange={handleChange}/>
-                <input name="bio" placeholder="Create a bio" onChange={handleChange}/>
-                <input name='email' placeholder="Enter your email address" onChange={handleChange}/>
-                <input name="links" placeholder="Enter a link to your portfolio" onChange={handleChange}/>
-                <select onChange={handleChange} name="phase_id">
-                    {makePhaseDropdown}
-                </select>
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
-    )
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label className="text-white">Enter full name</Form.Label>
+            <Form.Control type="email" name="name" placeholder="Full name" onChange={handleChange}/>
+          </Form.Group>
+    
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label className="text-white">Password</Form.Label>
+            <Form.Control type="password" name="password" placeholder="Your password" onChange={handleChange}/>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label className="text-white">Repeat Password</Form.Label>
+            <Form.Control type="password" name="password" placeholder="Type here" onChange={handleChange}/>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label className="text-white">Create a bio</Form.Label>
+            <Form.Control type="text" name="bio" placeholder="Bio" onChange={handleChange}/>
+          </Form.Group>
+          <Form.Text className="text-muted text-white-50" >
+             We'll never share your email with anyone else.
+            </Form.Text>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label className="text-white">Enter your email address</Form.Label>
+            <Form.Control type="email" name='email' placeholder="Your email" onChange={handleChange}/>
+          </Form.Group>
+        
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label className="text-white">Enter a link to your portfolio</Form.Label>
+            <Form.Control type="text" name="links" placeholder="Link here" onChange={handleChange}/>
+          </Form.Group>
+          <Form.Select aria-label="Default select example" onChange={handleChange} name="phase_id">
+          {makePhaseDropdown}
+            </Form.Select>
+          <div className="col-md-12 text-center btn-group">
+          <Button variant="dark" type="submit" >
+          Sign Up
+          </Button>{' '}
+          <Button variant="dark" type="click" className="centered-button">
+          <Link to="/sign-in"  className="text-white-50">Sign In</Link>
+          </Button>
+          </div>
+          
+        </Form>
+      );
+    // return (
+    //     <div>
+    //         <h1>SignUp</h1>
+    //         <form onSubmit={handleSubmit}>
+    //             <input name="name" placeholder="Enter full name" onChange={handleChange}/>
+    //             <input name="password" placeholder="Create a password" onChange={handleChange}/>
+    //             <input name="bio" placeholder="Create a bio" onChange={handleChange}/>
+    //             <input name='email' placeholder="Enter your email address" onChange={handleChange}/>
+    //             <input name="links" placeholder="Enter a link to your portfolio" onChange={handleChange}/>
+    //             <select onChange={handleChange} name="phase_id">
+    //                 {makePhaseDropdown}
+    //             </select>
+    //             <button type="submit">Sign Up</button>
+    //         </form>
+    //     </div>
+    // )
 
 }
 
