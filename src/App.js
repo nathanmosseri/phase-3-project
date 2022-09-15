@@ -20,8 +20,9 @@ function App() {
   const [phaseData, setPhaseData] = useState([])
   const [phasePosts, setPhasePosts] = useState([])
   const [searchedProfile, setSearchedProfile] = useState('')
-  const [searchedProfileData, setSearchedProfileData] = useState()
-  const [signUpSubmited, setSignUpSubmited] = useState(false) 
+  const [searchedProfileData, setSearchedProfileData] = useState([])
+  const [profileClicked, setProfileClicked] = useState(false)
+  const [signUpSubmited,setSignUpSubmited] = useState()
   // const [userFollowingData, setUserFollowingData] = useState([])
 
 
@@ -44,6 +45,13 @@ function App() {
           
         })
     }, [isLoggedIn, signUpSubmited])
+
+     useEffect(() => {
+        fetch(`http://localhost:9292/users-by-name/${searchedProfile}`).then(res => res.json())
+        .then((data) => {
+            setSearchedProfileData(data)
+        })
+    }, [profileClicked])
 
   
 
@@ -80,13 +88,13 @@ return (
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <MyProfile isLoggedIn={isLoggedIn} phaseData={phaseData} oneUserData={oneUserData} />}
         </Route>
         <Route path = '/search-users'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchUsers userInfo={userInfo} setSearchedProfile={setSearchedProfile}/>}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchUsers userInfo={userInfo} setSearchedProfile={setSearchedProfile} setProfileClicked={setProfileClicked}/>}
         </Route>
         <Route exact path = '/'>
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData} phaseData={phaseData} phasePosts={phasePosts} />}
         </Route>
         <Route path='/searched-profile'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchedProfile searchedProfile={searchedProfile} setSearchedProfileData={setSearchedProfileData} searchedProfileData={searchedProfileData}/>}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchedProfile searchedProfile={searchedProfile} setSearchedProfileData={setSearchedProfileData} searchedProfileData={searchedProfileData} profileClicked={profileClicked}/>}
         </Route>
         <Route path = '*'>
           <h1>PAGE NOT FOUND</h1>
