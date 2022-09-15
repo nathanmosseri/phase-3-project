@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const SearchUsers = ({userInfo, setSearchedProfile}) => {
-    console.log(userInfo)
+const SearchUsers = ({userInfo, setSearchedProfile, getProfile, setProfileClicked}) => {
 
     const [searchedNames, setSearchedNames] = useState([])
     const [searchValue, setSearchValue] = useState('')
@@ -18,6 +17,7 @@ const SearchUsers = ({userInfo, setSearchedProfile}) => {
     
     const handleClick = (e) => {
         setSearchedProfile(e.target.text)
+        setProfileClicked(prev => !prev)
     }
     
     
