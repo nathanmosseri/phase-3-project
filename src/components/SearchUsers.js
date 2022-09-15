@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const SearchUsers = ({userInfo}) => {
+const SearchUsers = ({userInfo, setSearchedProfile}) => {
     console.log(userInfo)
 
     const [searchedNames, setSearchedNames] = useState([])
@@ -16,6 +16,9 @@ const SearchUsers = ({userInfo}) => {
         setSearchedNames([...newArr])
     }
     
+    const handleClick = (e) => {
+        setSearchedProfile(e.target.text)
+    }
     
     
     return (
@@ -30,7 +33,7 @@ const SearchUsers = ({userInfo}) => {
           }).map((user, i) => {
             return (
             <div key={i}>
-            <p style={{color: 'white'}} key={user.id}><Link to='/searched-profile'>{user.name}</Link></p>
+            <p style={{color: 'white'}} key={user.id}><Link onClick={handleClick} to='/searched-profile'>{user.name}</Link></p>
         </div>
         )
           })
