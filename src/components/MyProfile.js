@@ -4,6 +4,10 @@ const MyProfile = ({phaseData, oneUserData}) => {
 
     const [oneUserPosts, setOneUserPosts] = useState([])
     const [posted, setPosted] = useState(false)
+    const [postId, setPostId] = useState('')
+    const [areYouSureEdit, setAreYouSureEdit] = useState(false)
+    const [areYouSureDelete, setAreYouSureDelete] = useState(false)
+    const [deleted, setDeleted] = useState(false)
     const [postFormData, setPostFormData] = useState({
                 body: '',
                 link: '',
@@ -16,7 +20,7 @@ const MyProfile = ({phaseData, oneUserData}) => {
         .then((post) => {
             setOneUserPosts(post)
         })
-    }, [posted])
+    }, [posted, deleted])
 
     const handleChange = (e) => {
         setPostFormData({
@@ -46,7 +50,15 @@ const MyProfile = ({phaseData, oneUserData}) => {
     }
 
     const handleDelete = (e) => {
-        console.log(e.target)
+        fetch(`http://localhost:9292/delete-posts/${postId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(() => {
+            setDeleted(prev => !prev)
+            areYouSureDelete(prev => !prev)
+        })
     }
 
 
@@ -57,11 +69,25 @@ const MyProfile = ({phaseData, oneUserData}) => {
             <p key={post.id}>{post.body}</p>
             <a>{post.link}</a>
             <p>{post.likes}</p>
-            <button>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={() => {
+                setPostId(post.id) 
+                setAreYouSureEdit(prev => !prev) }}> 
+                {areYouSureEdit ? 'cancel' : 'Edit post'}
+                </button>
+            <button onClick={() => {
+                setPostId(post.id) 
+                setAreYouSureDelete(prev => !prev) }}> 
+                {areYouSureDelete ? 'cancel' : 'Delete post'}
+            </button>
+            {areYouSureDelete ? <button onClick={handleDelete}>Confirm Deletion</button> : null}
+            {areYouSureEdit ? <form><input/><button type="submit">Confirm Edit</button></form> : null}
+            
         </div>
         )
     })
+    console.log(postId)
+    console.log(areYouSureDelete)
+    console.log(areYouSureEdit)
 
     return (
         <div>
