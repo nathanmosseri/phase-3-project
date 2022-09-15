@@ -46,7 +46,6 @@ function App() {
         fetch(`http://localhost:9292/users-by-name/${searchedProfile}`).then(res => res.json())
         .then((data) => {
             setSearchedProfileData(data)
-            console.log(data)
         })
     }, [profileClicked])
 

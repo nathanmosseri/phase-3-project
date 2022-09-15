@@ -3,10 +3,11 @@ import React, { useEffect } from "react";
 const SearchedProfile = ({ searchedProfileData }) => {
 
 
-   let postsArr;
+   let postsArr = []
 
     const profile = searchedProfileData.map((user, i) => {
         postsArr = user.posts
+        console.log(user.name)
         return (
         <div key={i}>
             <h1 key={user.name}>{user.name}</h1>
@@ -16,7 +17,6 @@ const SearchedProfile = ({ searchedProfileData }) => {
         </div>
         )
     })
-    console.log(postsArr)
     
     const profilePosts = postsArr.map((post, i) => {
         console.log(post)
