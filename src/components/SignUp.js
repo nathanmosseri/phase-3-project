@@ -3,18 +3,22 @@ import { useHistory } from "react-router-dom";
 import { Form , Button} from 'react-bootstrap';
 import { Link, NavLink } from "react-router-dom";
 
-const SignUp = ({setIsLoggedIn}) => {
+const SignUp = ({setIsLoggedIn, setSignUpSubmited, setOneUserData}) => {
 
     const history = useHistory()
     const [phaseInfo, setPhaseInfo] = useState([])
-    const [signUpForm, setSignUpForm] = useState({
+
+
+    const initialState = {
         name: '',
         password: '',
         bio: '',
         email: '',
         links: '',
         phase_id: ''
-    })
+    }
+    const [signUpForm, setSignUpForm] = useState(initialState)
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     useEffect(() => {
         fetch('http://localhost:9292/phases').then(res => res.json())
@@ -22,6 +26,19 @@ const SignUp = ({setIsLoggedIn}) => {
             setPhaseInfo(phases)
         })
     }, [])
+console.log(signUpForm)
+console.log(confirmPassword)
+
+//array with all userNames 
+const [userNames, setUserNames] = useState([])
+
+
+
+    useEffect(() => {
+        fetch("http://localhost:9292/users")
+          .then(r => r.json())
+          .then(d => setUserNames(d));
+      }, [])
 
     
     const handleChange = (e) => {
@@ -31,34 +48,90 @@ const SignUp = ({setIsLoggedIn}) => {
         })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setIsLoggedIn(true)
-        history.push('/')
-        fetch('http://localhost:9292/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(signUpForm),
-        }).then(res => res.json())
-        .then((data) => {
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     setIsLoggedIn(true)
+    //     history.push('/')
+    //     fetch('http://localhost:9292/users', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(signUpForm),
+    //     }).then(res => res.json())
+    //     .then((data) => {
 
-        })
+    //     })
 
-    }
+    // }
     
     const makePhaseDropdown = phaseInfo.map((phase, i) => {
         return (
             <option key={i} value={phase.id} name='phase_id'>{phase.phase}</option>
         )
     })
+
+    let arrayAllUserNames = userNames.map((user) => {
+        return user.email
+    
+        
+    })
+
+
+
+    // const handleChange = function (e) {
+    //     let { name, value } = e.target
+    //     if (name === "password") {
+    //         setPassword((password) => password = value)
+    //         setNewUser({ ...newUser, [name]: value })
+    //     }
+    //     else { setNewUser({ ...newUser, [name]: value }) }
+    // }
+
+
+    const handleChangeTwo = function (e) {
+        // console.log(e.target.value)
+        setConfirmPassword((confirmPassword) => confirmPassword = e.target.value)
+    }
+
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (signUpForm.password === confirmPassword && !arrayAllUserNames.includes(`${signUpForm.email}`)) {
+            fetch("http://localhost:9292/users", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(signUpForm)
+            })
+                .then((response) => response.json())
+                .then(data => console.log(data));
+            setIsLoggedIn(true)
+            // setPassword("");
+            setConfirmPassword("");
+            setSignUpForm(initialState);
+            setSignUpSubmited(prev=> !prev)
+            setOneUserData(signUpForm)
+            history.push('/')
+            alert('Successfully created an account! Please log in!')
+        } else {
+            // setPassword("");
+            setConfirmPassword("");
+            setSignUpForm(initialState);
+            alert('Your passwords do not match. Please try again.')
+        }
+        // setNewUser(initialState);
+    }
+
+
+
+
+
     return (
         <div className="login-signup">
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label className="text-white">Enter full name</Form.Label>
-            <Form.Control type="email" name="name" value={signUpForm.name} placeholder="Full name" onChange={handleChange}/>
+            <Form.Control type="text" name="name" value={signUpForm.name} placeholder="Full name" onChange={handleChange}/>
           </Form.Group>
     
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -67,7 +140,7 @@ const SignUp = ({setIsLoggedIn}) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="text-white">Repeat Password</Form.Label>
-            <Form.Control type="password" name="password" value={signUpForm.password} placeholder="Type here" onChange={handleChange}/>
+            <Form.Control type="password" name="confirmPassword"  value={confirmPassword} placeholder="Type here" onChange={handleChangeTwo}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="text-white">Create a bio</Form.Label>

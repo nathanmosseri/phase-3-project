@@ -24,7 +24,7 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
         <>
       {[
         'Dark',
-      ].map((variant) => (
+      ].map((variant, i) => (
         <Card
           bg={variant.toLowerCase()}
           key={variant}
@@ -32,14 +32,14 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
           style={{ width: '40rem' }}
           className="mb-2"
         >
-          <Card.Header> {post.user.name}</Card.Header>
+          <Card.Header key={i}> {post.user.name}</Card.Header>
           {/* <Image rounded thumbnail src="https://i2.wp.com/www.hadviser.com/wp-content/uploads/2021/03/4-lob-haircut-for-square-face-CSe6zHeKYT_.jpg?resize=1028%2C1196&ssl=1" width={20} height={20} className="rounded-circle w-25 "/>Header  */}
           <Card.Body>
-            <Card.Title><p key={post.id}>{post.body}</p></Card.Title>
-            <Card.Text>
-            <p key={post.id}>{post.body}</p>
+            <Card.Title>{post.body}</Card.Title>
+            <Card.Text  key={post.id}>
+            {post.body}
             </Card.Text>
-            <Card.Link href={post.link}>{post.link}</Card.Link>
+            <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
           </Card.Body>
         </Card>
       ))}
@@ -57,7 +57,7 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
 
     return (
         <div className="main-page">
-        <h1>Main Page</h1>
+        <h1 className="text-center text-white">general Posts</h1>
         {posts}
         </div>
     )

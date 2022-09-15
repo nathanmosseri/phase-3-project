@@ -21,6 +21,7 @@ function App() {
   const [phasePosts, setPhasePosts] = useState([])
   const [searchedProfile, setSearchedProfile] = useState('')
   const [searchedProfileData, setSearchedProfileData] = useState()
+  const [signUpSubmited, setSignUpSubmited] = useState(false) 
   // const [userFollowingData, setUserFollowingData] = useState([])
 
 
@@ -31,6 +32,9 @@ function App() {
   })
 }, [])
 
+
+
+
   useEffect(() => {
       fetch(`http://localhost:9292/phases-with-posts/${oneUserData.phase_id}`).then(res => res.json())
       .then((phase) => {
@@ -39,7 +43,7 @@ function App() {
           setPhasePosts(phase.posts)
           
         })
-    }, [isLoggedIn])
+    }, [isLoggedIn, signUpSubmited])
 
   
 
@@ -67,7 +71,7 @@ return (
           <SignIn setOneUserData={setOneUserData} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path='/sign-up'>
-          <SignUp setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
+          <SignUp setIsLoggedIn={setIsLoggedIn} userInfo={userInfo} setSignUpSubmited={setSignUpSubmited} setOneUserData={setOneUserData}/>
         </Route>
         <Route path='/general-posts'>
           {!isLoggedIn ? <Redirect to='/sign-in'/> :  <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo} usersNames={usersNames} />}
