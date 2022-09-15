@@ -6,21 +6,21 @@ const NavBar = () => {
     return (
       
     //     <Stack direction="horizontal" gap={5}>
-    <>
+    <div className="sticky">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand as={NavLink} to="/" exact>Navbar</Navbar.Brand>
+          <Navbar.Brand as={NavLink} to="/" exact ><h1 >// FLAT-LINK</h1></Navbar.Brand>
           <Nav className="text-center mt-4 mb-4">
-            <Nav.Link as={NavLink} to="/general-posts">General Posts</Nav.Link>
-            <Nav.Link as={NavLink} to="/" exact>Phase Posts</Nav.Link>
-            <Nav.Link as={NavLink} to="/search-users">Search Users</Nav.Link>
+            <Nav.Link as={NavLink} to="/general-posts"><h5>General Posts</h5></Nav.Link>
+            <Nav.Link as={NavLink} to="/" exact><h5>Phase Posts</h5></Nav.Link>
+            <Nav.Link as={NavLink} to="/search-users"><h5>Search Users</h5></Nav.Link>
             </Nav>
             <Nav className="justify-content-end">
-            <Nav.Link as={NavLink} to="/my-profile" className="">My Profile</Nav.Link>
+            <Nav.Link as={NavLink} to="/my-profile" className=""><h5>My Profile</h5></Nav.Link>
           </Nav>
         </Container>
       </Navbar>
-    </>
+    </div>
         
     )
 

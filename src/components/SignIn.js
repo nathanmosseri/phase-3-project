@@ -70,6 +70,7 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
         } else { alert('Your username or password is incorrect. Please try again.') }
     }
     return (
+        <div className="login-signup">
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label className="text-white">Email address</Form.Label>
@@ -85,7 +86,7 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
           </Form.Group>
           <div className="col-md-12 text-center btn-group">
           <Button variant="dark" type="submit" >
-            Submit
+            Log In
           </Button>{' '}
           <Button variant="dark" type="click" className="centered-button">
           <Link to="/sign-up"  className="text-white-50">Sign Up</Link>
@@ -93,6 +94,7 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
           </div>
           
         </Form>
+        </div>
       );
 }
 

@@ -54,6 +54,7 @@ const SignUp = ({setIsLoggedIn}) => {
         )
     })
     return (
+        <div className="login-signup">
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label className="text-white">Enter full name</Form.Label>
@@ -97,6 +98,7 @@ const SignUp = ({setIsLoggedIn}) => {
           </div>
           
         </Form>
+        </div>
       );
     // return (
     //     <div>

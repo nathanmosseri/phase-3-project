@@ -8,14 +8,17 @@
   font-weight: 600;
 }
 
-.full-screen-container {
-    background-image: url("https://wallpaperaccess.com/full/7770820.jpg");
+.login-signup{
+    background-image: url("https://wallpapershome.com/images/wallpapers/sky-3840x2160-5k-4k-wallpaper-clouds-planet-light-atmosphere-cyclone-732.jpg");
     height: 100vh;
     width: 100vw;
     background-size: cover;
     background-position: center;
     position: fixed;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
   }
 
 .login-signup{
@@ -26,3 +29,30 @@
     align-items: center;
     right: 0;
 }
+.sticky {
+position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+.relative  {
+    position: relative;
+}
+.main-page {
+   
+    z-index: 950;
+    
+}
+
+.background-image{
+    height: 100%;
+    width: 100vw;
+    background-image:
+    url("https://wallpapershome.com/images/wallpapers/sky-3840x2160-5k-4k-wallpaper-clouds-planet-light-atmosphere-cyclone-732.jpg");
+    background-position: center;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-size: cover;
+     background-repeat: no-repeat;
+     }
+
