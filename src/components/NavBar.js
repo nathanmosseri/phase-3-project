@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Container, Nav, Navbar} from 'react-bootstrap';
-const NavBar = () => {
+const NavBar = ({oneUserData}) => {
 
     return (
       
@@ -16,7 +16,7 @@ const NavBar = () => {
             <Nav.Link as={NavLink} to="/search-users"><h5>Search Users</h5></Nav.Link>
             </Nav>
             <Nav className="justify-content-end">
-            <Nav.Link as={NavLink} to="/my-profile" className=""><h5>My Profile</h5></Nav.Link>
+            <Nav.Link as={NavLink} to="/my-profile" className="">{oneUserData.name}'s Profile</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

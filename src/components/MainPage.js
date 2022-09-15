@@ -4,7 +4,6 @@ import { Card, Button, Image, CImage} from 'react-bootstrap';
 const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
 
     const [postsToDisplay, setPostsToDisplay] = useState([])
-    console.log(usersNames)
 
     useState(() => {
         fetch(`http://localhost:9292/namedPosts`).then(res => res.json())
@@ -12,7 +11,6 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
             setPostsToDisplay(data)
         })
     }, [])
-    console.log(postsToDisplay)
 
     const posts = postsToDisplay.map((post, i) => {
         return (
