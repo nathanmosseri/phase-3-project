@@ -1,8 +1,7 @@
 import React, { useState, useEffect  } from "react";
 import { useHistory } from "react-router-dom";
-
-
-
+import { Form , Button} from 'react-bootstrap';
+import { Link, NavLink } from "react-router-dom";
 
 
 const SignIn = ({setIsLoggedIn, setOneUserData}) => {
@@ -43,8 +42,7 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
         userDataBase.forEach((oneObj) => {
             if (oneObj.email === userEmail) {
                 idUserName = oneObj.id;
-            } else {
-                
+                // console.log(idUserName)
             }
         })
 
@@ -71,33 +69,31 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
                 })
         } else { alert('Your username or password is incorrect. Please try again.') }
     }
-    
     return (
-        <div className="full-screen-container">
-            <div className="login-container">
-                <h1 className="login-title">Welcome</h1>
-                <form className="form" onSubmit={handleSubmit}>
-                    <div className="input-group success">
-                        <label className="username">Enter email address</label>
-                        <input type="text" name="email" value={userEmail} onChange={handleChange}/> 
-                        {/* <input type="text" name="username" value={userName} onChange={handleChange} /> */}
-                        <span className="msg"> Type Valid username</span>
-                    </div>
-
-                    <div className="input-group success">
-                        <label className="password">Password</label>
-                        <input type="password" name="password" id="password" value={password} onChange={handleChange} />
-                        {/* <input id="password"  type="password" name="password" value={password} onChange={handleChange} /> */}
-                        {/* <span className="msg">Incorrect password</span> */}
-                    </div>
-
-                    <button type="submit" className="login-button">Login</button>
-                </form>
-            </div>
-        </div>
-
-
-    )
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label className="text-white">Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" name="email" value={userEmail} onChange={handleChange}/>
+            <Form.Text className="text-muted text-white-50" >
+             We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+    
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label className="text-white">Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" name="password"  value={password} onChange={handleChange}/>
+          </Form.Group>
+          <div className="col-md-12 text-center btn-group">
+          <Button variant="dark" type="submit" >
+            Submit
+          </Button>{' '}
+          <Button variant="dark" type="click" className="centered-button">
+          <Link to="/sign-up"  className="text-white-50">Sign Up</Link>
+          </Button>
+          </div>
+          
+        </Form>
+      );
 }
 
 

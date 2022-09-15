@@ -20,7 +20,7 @@ const SearchUsers = ({userInfo}) => {
     
     return (
         <div>
-        <h1>Search for Users {userInfo.length}</h1>
+        <h1>Search for Users</h1>
         <form value={searchValue}>
           <input  onChange={handleChange} />
         </form>
