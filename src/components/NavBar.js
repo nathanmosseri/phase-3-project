@@ -1,7 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Container, Nav, Navbar} from 'react-bootstrap';
-const NavBar = ({oneUserData}) => {
+import { Container, Nav, Navbar, Button} from 'react-bootstrap';
+
+const NavBar = ({oneUserData, setIsLoggedIn}) => {
+
+  const handleClick = (e) => {
+    setIsLoggedIn(false)
+  }
 
     return (
       
@@ -17,6 +22,7 @@ const NavBar = ({oneUserData}) => {
             </Nav>
             <Nav className="justify-content-end">
             <Nav.Link as={NavLink} to="/my-profile" className="">{oneUserData.name}'s Profile</Nav.Link>
+            <Button onClick={handleClick} variant="dark" type="click" className="centered-button">Sign Out</Button>
           </Nav>
         </Container>
       </Navbar>
