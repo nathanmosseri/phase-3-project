@@ -9,6 +9,7 @@ import SearchUsers from './components/SearchUsers';
 import PhasePosts from './components/PhasePosts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
+import SearchedProfile from './components/SearchedProfile';
 
 
 function App() {
@@ -57,7 +58,7 @@ function App() {
 
 return (
         <>
-        <NavBar setIsLoggedIn={setIsLoggedIn} userInfo={userInfo}/>
+        <NavBar setIsLoggedIn={setIsLoggedIn} userInfo={userInfo} oneUserData={oneUserData} />
         <div className='full-screen-container'>
         <Switch>
         <Route path='/sign-in'>
@@ -74,13 +75,16 @@ return (
           {!isLoggedIn ? <Redirect to='/sign-in'/> :  <MainPage isLoggedIn={isLoggedIn} userInfo={userInfo} usersNames={usersNames} />}
         </Route>  
         <Route path='/my-profile' >
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <MyProfile isLoggedIn={isLoggedIn}/>}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <MyProfile isLoggedIn={isLoggedIn} phaseData={phaseData} oneUserData={oneUserData} />}
         </Route>
         <Route path = '/search-users'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchUsers />}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchUsers userInfo={userInfo} />}
         </Route>
         <Route exact path = '/'>
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData} phaseData={phaseData} phasePosts={phasePosts} />}
+        </Route>
+        <Route path='/searched-profile'>
+          <SearchedProfile />
         </Route>
         <Route path = '*'>
           <h1>PAGE NOT FOUND</h1>

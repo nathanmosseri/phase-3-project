@@ -13,7 +13,7 @@ const SignUp = ({setIsLoggedIn}) => {
         bio: '',
         email: '',
         links: '',
-        phase_id: null
+        phase_id: ''
     })
 
     useEffect(() => {
@@ -57,34 +57,34 @@ const SignUp = ({setIsLoggedIn}) => {
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label className="text-white">Enter full name</Form.Label>
-            <Form.Control type="email" name="name" placeholder="Full name" onChange={handleChange}/>
+            <Form.Control type="email" name="name" value={signUpForm.name} placeholder="Full name" onChange={handleChange}/>
           </Form.Group>
     
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="text-white">Password</Form.Label>
-            <Form.Control type="password" name="password" placeholder="Your password" onChange={handleChange}/>
+            <Form.Control type="password" name="password" value={signUpForm.password} placeholder="Your password" onChange={handleChange}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="text-white">Repeat Password</Form.Label>
-            <Form.Control type="password" name="password" placeholder="Type here" onChange={handleChange}/>
+            <Form.Control type="password" name="password" value={signUpForm.password} placeholder="Type here" onChange={handleChange}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="text-white">Create a bio</Form.Label>
-            <Form.Control type="text" name="bio" placeholder="Bio" onChange={handleChange}/>
+            <Form.Control type="text" name="bio" value={signUpForm.bio} placeholder="Bio" onChange={handleChange}/>
           </Form.Group>
           <Form.Text className="text-muted text-white-50" >
              We'll never share your email with anyone else.
             </Form.Text>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="text-white">Enter your email address</Form.Label>
-            <Form.Control type="email" name='email' placeholder="Your email" onChange={handleChange}/>
+            <Form.Control type="email" name='email' value={signUpForm.email} placeholder="Your email" onChange={handleChange}/>
           </Form.Group>
         
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="text-white">Enter a link to your portfolio</Form.Label>
-            <Form.Control type="text" name="links" placeholder="Link here" onChange={handleChange}/>
+            <Form.Control type="text" name="links" value={signUpForm.links} placeholder="Link here" onChange={handleChange}/>
           </Form.Group>
-          <Form.Select aria-label="Default select example" onChange={handleChange} name="phase_id">
+          <Form.Select aria-label="Default select example" onChange={handleChange} name="phase_id" value={signUpForm.phase_id}>
           {makePhaseDropdown}
             </Form.Select>
           <div className="col-md-12 text-center btn-group">
