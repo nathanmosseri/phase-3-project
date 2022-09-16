@@ -105,7 +105,7 @@ const MyProfile = ({phaseData, oneUserData}) => {
                 </Card.Text>
               <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
               <Nav className="justify-content-end">
-             <Button variant="dark" type="click" className="" onClick={handleDelete}> 
+             <Button variant="dark" type="click" className="" onClick={handleDelete} value={post.id}> 
              Delete post
             </Button>
             {/* <Button variant="dark" type="click" className="" disabled>
@@ -118,9 +118,6 @@ const MyProfile = ({phaseData, oneUserData}) => {
       </>
         )
     })
-    console.log(postId)
-    console.log(areYouSureDelete)
-    console.log(areYouSureEdit)
 
     return (
         // <div className=" height">

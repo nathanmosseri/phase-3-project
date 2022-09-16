@@ -26,8 +26,6 @@ const SignUp = ({setIsLoggedIn, setSignUpSubmited, setOneUserData}) => {
             setPhaseInfo(phases)
         })
     }, [])
-console.log(signUpForm)
-console.log(confirmPassword)
 
 //array with all userNames 
 const [userNames, setUserNames] = useState([])
@@ -90,7 +88,6 @@ const [userNames, setUserNames] = useState([])
 
 
     const handleChangeTwo = function (e) {
-        // console.log(e.target.value)
         setConfirmPassword((confirmPassword) => confirmPassword = e.target.value)
     }
 

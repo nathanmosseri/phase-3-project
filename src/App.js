@@ -24,6 +24,7 @@ function App() {
   const [profileClicked, setProfileClicked] = useState(false)
   const [signUpSubmited,setSignUpSubmited] = useState()
   const [click, setClick] = useState(false)
+  const [profileLike, setProfileLike] = useState(false)
   // const [userFollowingData, setUserFollowingData] = useState([])
 
 
@@ -40,7 +41,6 @@ function App() {
   useEffect(() => {
       fetch(`http://localhost:9292/phases-with-posts/${oneUserData.phase_id}`).then(res => res.json())
       .then((phase) => {
-        // console.log(phase)
           setPhaseData(phase.phase)
           setPhasePosts(phase.posts)
           
@@ -52,7 +52,7 @@ function App() {
         .then((data) => {
             setSearchedProfileData(data)
         })
-    }, [profileClicked])
+    }, [profileClicked, profileLike])
 
   
 
@@ -95,7 +95,7 @@ return (
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData} phaseData={phaseData} phasePosts={phasePosts} setClick={setClick}/>}
         </Route>
         <Route path='/searched-profile'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchedProfile searchedProfile={searchedProfile} phaseData={phaseData} setSearchedProfileData={setSearchedProfileData} searchedProfileData={searchedProfileData} profileClicked={profileClicked}/>}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchedProfile searchedProfile={searchedProfile} phaseData={phaseData} setSearchedProfileData={setSearchedProfileData} searchedProfileData={searchedProfileData} profileClicked={profileClicked} setProfileLike={setProfileLike}/>}
         </Route>
         <Route path = '*'>
           <h1>PAGE NOT FOUND</h1>
