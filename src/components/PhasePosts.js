@@ -1,8 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Image, CImage, Nav} from 'react-bootstrap';
 
-const PhasePosts = ({userInfo, oneUserData, phaseData, phasePosts}) => {
+const PhasePosts = ({userInfo, oneUserData, phaseData, phasePosts, setClick}) => {
+
+  const [likeButton, setLikeButton] = useState([])
     
+
+  const handleLike = (e) => {
+      setLikeButton(e.target.value)
+      const updateLikes = {
+        likes:  1
+      }
+      fetch(`http://localhost:9292/posts/${likeButton}`,{
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateLikes)
+      }).then(res => res.json())
+      .then((data) => {
+        setClick(prev => !prev)
+      })
+    }
+
     const postsForPhase = phasePosts.map((post, i) => {
         return (
         // <div key={i}>
@@ -32,11 +52,9 @@ const PhasePosts = ({userInfo, oneUserData, phaseData, phasePosts}) => {
               </Card.Text>
               <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
               <Nav className="justify-content-end">
-                <Button variant="dark" type="click" className="">
+                <p>{post.likes}</p>
+                <Button variant="dark" type="click" className="" onClick={handleLike} value={post.id}>
                 Like
-                </Button>
-                <Button variant="dark" type="click" className="" disabled>
-                Liked
                 </Button>
             </Nav>
             </Card.Body>

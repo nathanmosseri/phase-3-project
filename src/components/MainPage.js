@@ -1,16 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button, Image, CImage, Container, Nav} from 'react-bootstrap';
+import { Prev } from "react-bootstrap/esm/PageItem";
 
 const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
 
     const [postsToDisplay, setPostsToDisplay] = useState([])
+    const [likeClicked, setLikeClicked] = useState([])
+    const [click, setClick] = useState(false)
 
-    useState(() => {
+    useEffect(() => {
         fetch(`http://localhost:9292/namedPosts`).then(res => res.json())
         .then((data) => {
             setPostsToDisplay(data)
         })
-    }, [])
+    }, [click])
+
+    const handleLike = (e) => {
+      setLikeClicked(e.target.value)
+      const updateLikes = {
+        likes:  1
+      }
+      fetch(`http://localhost:9292/posts/${likeClicked}`,{
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateLikes)
+      }).then(res => res.json())
+      .then((data) => {
+        setClick(prev => !prev)
+      })
+    }
 
     const posts = postsToDisplay.map((post, i) => {
         return (
@@ -43,12 +63,8 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
               </Card.Text>
             <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
             <Nav className="justify-content-end">
-           <Button variant="dark" type="click" className="">
-          Like
-          </Button>
-          <Button variant="dark" type="click" className="" disabled>
-          Liked
-          </Button>
+              <p>{post.likes}</p>
+           <Button value={post.id} onClick={handleLike} variant="dark" type="click" className="">Like</Button>
           </Nav>
           </Card.Body>
         </Card>

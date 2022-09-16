@@ -51,6 +51,7 @@ const MyProfile = ({phaseData, oneUserData}) => {
     }
 
     const handleDelete = (e) => {
+        setPostId(e.target.value)
         fetch(`http://localhost:9292/delete-posts/${postId}`, {
             method: 'DELETE',
             headers: {
@@ -58,7 +59,6 @@ const MyProfile = ({phaseData, oneUserData}) => {
             }
         }).then(() => {
             setDeleted(prev => !prev)
-            areYouSureDelete(prev => !prev)
         })
     }
 
@@ -105,10 +105,8 @@ const MyProfile = ({phaseData, oneUserData}) => {
                 </Card.Text>
               <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
               <Nav className="justify-content-end">
-             <Button variant="dark" type="click" className="" onClick={() => {
-                setPostId(post.id) 
-                setAreYouSureDelete(prev => !prev) }}> 
-            {areYouSureDelete ? 'cancel' : 'Delete post'}
+             <Button variant="dark" type="click" className="" onClick={handleDelete}> 
+             Delete post
             </Button>
             {/* <Button variant="dark" type="click" className="" disabled>
             

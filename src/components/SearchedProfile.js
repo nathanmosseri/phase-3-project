@@ -30,6 +30,7 @@ const SearchedProfile = ({ searchedProfileData }) => {
                     <Button variant="dark" type="click" className="">
                     Like
                     </Button>
+                    <p>{post.likes}</p>
                     <Button variant="dark" type="click" className="" disabled>
                     Liked
                     </Button>
