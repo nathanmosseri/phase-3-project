@@ -23,6 +23,7 @@ function App() {
   const [searchedProfileData, setSearchedProfileData] = useState([])
   const [profileClicked, setProfileClicked] = useState(false)
   const [signUpSubmited,setSignUpSubmited] = useState()
+  const [click, setClick] = useState(false)
   // const [userFollowingData, setUserFollowingData] = useState([])
 
 
@@ -44,7 +45,7 @@ function App() {
           setPhasePosts(phase.posts)
           
         })
-    }, [isLoggedIn, signUpSubmited])
+    }, [isLoggedIn, signUpSubmited, click])
 
      useEffect(() => {
         fetch(`http://localhost:9292/users-by-name/${searchedProfile}`).then(res => res.json())
@@ -91,7 +92,7 @@ return (
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchUsers userInfo={userInfo} setSearchedProfile={setSearchedProfile} setProfileClicked={setProfileClicked}/>}
         </Route>
         <Route exact path = '/'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData} phaseData={phaseData} phasePosts={phasePosts} />}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData} phaseData={phaseData} phasePosts={phasePosts} setClick={setClick}/>}
         </Route>
         <Route path='/searched-profile'>
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchedProfile searchedProfile={searchedProfile} setSearchedProfileData={setSearchedProfileData} searchedProfileData={searchedProfileData} profileClicked={profileClicked}/>}

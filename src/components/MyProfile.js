@@ -51,6 +51,7 @@ const MyProfile = ({phaseData, oneUserData}) => {
     }
 
     const handleDelete = (e) => {
+        setPostId(e.target.value)
         fetch(`http://localhost:9292/delete-posts/${postId}`, {
             method: 'DELETE',
             headers: {
@@ -58,7 +59,6 @@ const MyProfile = ({phaseData, oneUserData}) => {
             }
         }).then(() => {
             setDeleted(prev => !prev)
-            areYouSureDelete(prev => !prev)
         })
     }
 
@@ -70,18 +70,16 @@ const MyProfile = ({phaseData, oneUserData}) => {
             <p key={post.id}>{post.body}</p>
             <a>{post.link}</a>
             <p>{post.likes}</p>
-            <button onClick={() => {
+            {/* <button onClick={() => {
                 setPostId(post.id) 
                 setAreYouSureEdit(prev => !prev) }}> 
                 {areYouSureEdit ? 'cancel' : 'Edit post'}
-                </button>
-            <button onClick={() => {
-                setPostId(post.id) 
-                setAreYouSureDelete(prev => !prev) }}> 
-                {areYouSureDelete ? 'cancel' : 'Delete post'}
+                </button> */}
+            <button value={post.id} onClick={handleDelete}> 
+                DELETE
             </button>
-            {areYouSureDelete ? <button onClick={handleDelete}>Confirm Deletion</button> : null}
-            {areYouSureEdit ? <form><input/><button type="submit">Confirm Edit</button></form> : null}
+            {/* {areYouSureDelete ? <button onClick={handleDelete}>Confirm Deletion</button> : null}
+            {areYouSureEdit ? <form><input/><button type="submit">Confirm Edit</button></form> : null} */}
             
         </div>
         )
@@ -92,18 +90,13 @@ const MyProfile = ({phaseData, oneUserData}) => {
 
     return (
         // <div className=" height">
-        // <h1>{oneUserData.name}'s Profile</h1>
-        // <h2>{phaseData}</h2>
-        // <h3>{oneUserData.bio}</h3>
-        // <h3>{oneUserData.email}</h3>
-        // <h3>{oneUserData.links}</h3>
-        // <h2>Create a New Post</h2>
-        // <form value={postFormData} onSubmit={handleSubmit}>
-        //     <input placeholder="Write you post here" name="body" onChange={handleChange}/>
-        //     <input placeholder="Add a link" name="link" onChange={handleChange}/>
-        //     <button>Post</button>
-        // </form>
-        // {profilePosts}
+        // // <h1>{oneUserData.name}'s Profile</h1>
+        // // <h2>{phaseData}</h2>
+        // // <h3>{oneUserData.bio}</h3>
+        // // <h3>{oneUserData.email}</h3>
+        // // <h3>{oneUserData.links}</h3>
+        // // <h2>Create a New Post</h2>
+        
         // </div>
         <>
         <Navbar  variant="dark">
@@ -143,6 +136,12 @@ const MyProfile = ({phaseData, oneUserData}) => {
         </Nav.Item>
       </Nav>
       </Container>
+      <form value={postFormData} onSubmit={handleSubmit}>
+            <input placeholder="Write you post here" name="body" onChange={handleChange}/>
+            <input placeholder="Add a link" name="link" onChange={handleChange}/>
+            <button>Post</button>
+        </form>
+        {profilePosts}
     </>
     )
     
