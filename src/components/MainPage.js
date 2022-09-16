@@ -63,7 +63,7 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
               </Card.Text>
             <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
             <Nav className="justify-content-end">
-            <Nav.Link ><h3 className="text-white-50">{post.likes}</h3></Nav.Link>
+              <Nav.Link ><h3 className="text-white-50">{post.likes}</h3></Nav.Link>
            <Button value={post.id} onClick={handleLike} variant="dark" type="click" className=""><h4>Like</h4></Button>
           </Nav>
           </Card.Body>
