@@ -105,6 +105,7 @@ const MyProfile = ({phaseData, oneUserData}) => {
                 </Card.Text>
               <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
               <Nav className="justify-content-end">
+                <Nav.Link ><h3 className="text-white-50">{post.likes} likes</h3></Nav.Link>
              <Button variant="dark" type="click" className="" onClick={handleDelete} value={post.id}> 
              Delete post
             </Button>
