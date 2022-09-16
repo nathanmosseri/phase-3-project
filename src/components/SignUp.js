@@ -156,6 +156,7 @@ const [userNames, setUserNames] = useState([])
             <Form.Control type="text" name="links" value={signUpForm.links} placeholder="Link here" onChange={handleChange}/>
           </Form.Group>
           <Form.Select aria-label="Default select example" onChange={handleChange} name="phase_id" >
+            <option>--please select your phase--</option>
           {makePhaseDropdown}
             </Form.Select>
           <div className="col-md-12 text-center btn-group">
