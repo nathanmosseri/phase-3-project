@@ -78,7 +78,6 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
 // <Image src="https://i2.wp.com/www.hadviser.com/wp-content/uploads/2021/03/4-lob-haircut-for-square-face-CSe6zHeKYT_.jpg?resize=1028%2C1196&ssl=1" 
 //           className="rounded-circle w-25 "  fluid></Image>
     // userFollowingData.map((f) => {
-    //     console.log(f.following_id)
     // })
 
     return (

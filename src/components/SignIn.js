@@ -42,7 +42,6 @@ const SignIn = ({setIsLoggedIn, setOneUserData}) => {
         userDataBase.forEach((oneObj) => {
             if (oneObj.email === userEmail) {
                 idUserName = oneObj.id;
-                // console.log(idUserName)
             }
         })
 
