@@ -96,7 +96,7 @@ const SearchedProfile = ({ searchedProfileData, setProfileLike,  phaseData  }) =
               <Nav className="justify-content-end">
               <Nav.Link ><h3 className="text-white-50">{post.likes}</h3></Nav.Link>
               {/* onClick={handleLike} */}
-           <Button value={post.id}  variant="dark" type="click" className=""><h4>Like</h4></Button>
+           <Button value={post.id}  variant="dark" type="click" className="" onClick={handleLike}><h4>Like</h4></Button>
           </Nav>
             </Card.Body>
           </Card>
