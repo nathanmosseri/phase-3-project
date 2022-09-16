@@ -52,9 +52,9 @@ const PhasePosts = ({userInfo, oneUserData, phaseData, phasePosts, setClick}) =>
               </Card.Text>
               <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
               <Nav className="justify-content-end">
-                <p>{post.likes}</p>
+              <Nav.Link ><h3 className="text-white-50">{post.likes}</h3></Nav.Link>
                 <Button variant="dark" type="click" className="" onClick={handleLike} value={post.id}>
-                Like
+                <h4>Like</h4>
                 </Button>
             </Nav>
             </Card.Body>
