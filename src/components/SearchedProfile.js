@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Card, Button, Image, CImage, Nav} from 'react-bootstrap';
 
 const SearchedProfile = ({ searchedProfileData }) => {
 
@@ -25,7 +26,14 @@ const SearchedProfile = ({ searchedProfileData }) => {
                 <p>{post.body}</p>
                 <a>{post.link}</a>
                 <p>{post.likes}</p>
-                <button>Like</button>
+                <Nav className="justify-content-end">
+                    <Button variant="dark" type="click" className="">
+                    Like
+                    </Button>
+                    <Button variant="dark" type="click" className="" disabled>
+                    Liked
+                    </Button>
+                </Nav>  
             </div>
         )
     })

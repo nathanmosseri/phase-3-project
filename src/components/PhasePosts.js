@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Image, CImage} from 'react-bootstrap';
+import { Card, Button, Image, CImage, Nav} from 'react-bootstrap';
 
 const PhasePosts = ({userInfo, oneUserData, phaseData, phasePosts}) => {
     
@@ -31,6 +31,14 @@ const PhasePosts = ({userInfo, oneUserData, phaseData, phasePosts}) => {
               {post.body}
               </Card.Text>
               <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
+              <Nav className="justify-content-end">
+                <Button variant="dark" type="click" className="">
+                Like
+                </Button>
+                <Button variant="dark" type="click" className="" disabled>
+                Liked
+                </Button>
+            </Nav>
             </Card.Body>
           </Card>
         ))}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button, Image, CImage} from 'react-bootstrap';
+import { Card, Button, Image, CImage, Container, Nav} from 'react-bootstrap';
 
 const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
 
@@ -32,7 +32,9 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
           style={{ width: '40rem' }}
           className="mb-2"
         >
-          <Card.Header key={i}> {post.user.name}</Card.Header>
+          <Card.Header key={i}> {post.user.name}
+         
+          </Card.Header>
           {/* <Image rounded thumbnail src="https://i2.wp.com/www.hadviser.com/wp-content/uploads/2021/03/4-lob-haircut-for-square-face-CSe6zHeKYT_.jpg?resize=1028%2C1196&ssl=1" width={20} height={20} className="rounded-circle w-25 "/>Header  */}
           <Card.Body>
             <Card.Title>{post.body}</Card.Title>
@@ -40,6 +42,14 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
             {post.body}
             </Card.Text>
             <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
+            <Nav className="justify-content-end">
+           <Button variant="dark" type="click" className="">
+          Like
+          </Button>
+          <Button variant="dark" type="click" className="" disabled>
+          Liked
+          </Button>
+          </Nav>
           </Card.Body>
         </Card>
       ))}
