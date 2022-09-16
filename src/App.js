@@ -95,7 +95,7 @@ return (
           {!isLoggedIn ? <Redirect to='/sign-in'/> : <PhasePosts userInfo={userInfo} oneUserData={oneUserData} phaseData={phaseData} phasePosts={phasePosts} setClick={setClick}/>}
         </Route>
         <Route path='/searched-profile'>
-          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchedProfile searchedProfile={searchedProfile} setSearchedProfileData={setSearchedProfileData} searchedProfileData={searchedProfileData} profileClicked={profileClicked}/>}
+          {!isLoggedIn ? <Redirect to='/sign-in'/> : <SearchedProfile searchedProfile={searchedProfile} phaseData={phaseData} setSearchedProfileData={setSearchedProfileData} searchedProfileData={searchedProfileData} profileClicked={profileClicked}/>}
         </Route>
         <Route path = '*'>
           <h1>PAGE NOT FOUND</h1>

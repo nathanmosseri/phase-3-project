@@ -53,7 +53,7 @@ const SearchUsers = ({userInfo, setSearchedProfile, setProfileClicked}) => {
             style={{ width: '25rem' }}
             className="mb-2"
           >
-            <Card.Header key={i}> Header</Card.Header>
+            
             {/* <Image rounded thumbnail src="https://i2.wp.com/www.hadviser.com/wp-content/uploads/2021/03/4-lob-haircut-for-square-face-CSe6zHeKYT_.jpg?resize=1028%2C1196&ssl=1" width={20} height={20} className="rounded-circle w-25 "/>Header  */}
             <Card.Body>
               <Link onClick={handleClick} to='/searched-profile' className="text-white-50">{user.name}</Link>
