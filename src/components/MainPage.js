@@ -37,10 +37,10 @@ const MainPage = ({isLoggedIn, userInfo, usersNames}) => {
           </Card.Header>
           {/* <Image rounded thumbnail src="https://i2.wp.com/www.hadviser.com/wp-content/uploads/2021/03/4-lob-haircut-for-square-face-CSe6zHeKYT_.jpg?resize=1028%2C1196&ssl=1" width={20} height={20} className="rounded-circle w-25 "/>Header  */}
           <Card.Body>
-            <Card.Title>{post.body}</Card.Title>
-            <Card.Text  key={post.id}>
-            {post.body}
-            </Card.Text>
+            <Card.Title><h3>{post.body}</h3></Card.Title>
+              <Card.Text  key={post.id}>
+              Was added: {post.created_at}
+              </Card.Text>
             <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
             <Nav className="justify-content-end">
            <Button variant="dark" type="click" className="">

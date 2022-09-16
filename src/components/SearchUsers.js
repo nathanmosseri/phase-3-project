@@ -27,7 +27,7 @@ const SearchUsers = ({userInfo, setSearchedProfile, setProfileClicked}) => {
         <div className=" height"> 
         <h1 className="text-center text-white ">Search for Users</h1>
         <div className="seach-bar">
-        <Form className="d-flex" value={searchValue}>
+        <Form className="d-flex" value={searchValue} style={{ width: '25rem' }}>
          <Form.Control
           type="search"
           placeholder="Search"
@@ -50,7 +50,7 @@ const SearchUsers = ({userInfo, setSearchedProfile, setProfileClicked}) => {
             bg={variant.toLowerCase()}
             key={variant}
             text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
-            style={{ width: '40rem' }}
+            style={{ width: '25rem' }}
             className="mb-2"
           >
             <Card.Header key={i}> Header</Card.Header>

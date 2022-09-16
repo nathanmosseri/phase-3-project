@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import  {Nav , Navbar, NavLink, Container} from 'react-bootstrap';
+import  {Nav , Navbar, NavLink, Container, Button, Card, Form} from 'react-bootstrap';
 
 const MyProfile = ({phaseData, oneUserData}) => {
 
@@ -65,25 +65,59 @@ const MyProfile = ({phaseData, oneUserData}) => {
 
     const profilePosts = oneUserPosts.map((post, i) => {
         return (
-            <div key={i} style={{backgroundColor: 'white'}}>
-            <p >{oneUserData.name}</p>
-            <p key={post.id}>{post.body}</p>
-            <a>{post.link}</a>
-            <p>{post.likes}</p>
-            <button onClick={() => {
-                setPostId(post.id) 
-                setAreYouSureEdit(prev => !prev) }}> 
-                {areYouSureEdit ? 'cancel' : 'Edit post'}
-                </button>
-            <button onClick={() => {
+            // <div key={i} style={{backgroundColor: 'white'}}>
+            // <p >{oneUserData.name}</p>
+            // <p key={post.id}>{post.body}</p>
+            // <a>{post.link}</a>
+            // <p>{post.likes}</p>
+            // <button onClick={() => {
+            //     setPostId(post.id) 
+            //     setAreYouSureEdit(prev => !prev) }}> 
+            //     {areYouSureEdit ? 'cancel' : 'Edit post'}
+            //     </button>
+            // <button onClick={() => {
+            //     setPostId(post.id) 
+            //     setAreYouSureDelete(prev => !prev) }}> 
+            //     {areYouSureDelete ? 'cancel' : 'Delete post'}
+            // </button>
+            // {areYouSureDelete ? <button onClick={handleDelete}>Confirm Deletion</button> : null}
+            // {areYouSureEdit ? <form><input/><button type="submit">Confirm Edit</button></form> : null}
+            
+        // </div>
+        <>
+        {[
+          'Dark',
+        ].map((variant, i) => (
+          <Card
+            bg={variant.toLowerCase()}
+            key={variant}
+            text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
+            style={{ width: '40rem' }}
+            className="mb-2"
+          >
+            <Card.Header key={i}> 
+            {oneUserData.name}
+            </Card.Header>
+            <Card.Body>
+            <Card.Title><h3>{post.body}</h3></Card.Title>
+                <Card.Text  key={post.id}>
+                Was added: {post.created_at}
+                </Card.Text>
+              <Card.Link  key={post.link} href={post.link} className="text-white-50">{post.link}</Card.Link>
+              <Nav className="justify-content-end">
+             <Button variant="dark" type="click" className="" onClick={() => {
                 setPostId(post.id) 
                 setAreYouSureDelete(prev => !prev) }}> 
-                {areYouSureDelete ? 'cancel' : 'Delete post'}
-            </button>
-            {areYouSureDelete ? <button onClick={handleDelete}>Confirm Deletion</button> : null}
-            {areYouSureEdit ? <form><input/><button type="submit">Confirm Edit</button></form> : null}
+            {areYouSureDelete ? 'cancel' : 'Delete post'}
+            </Button>
+            {/* <Button variant="dark" type="click" className="" disabled>
             
-        </div>
+            </Button> */}
+            </Nav>
+            </Card.Body>
+          </Card>
+        ))}
+      </>
         )
     })
     console.log(postId)
@@ -98,51 +132,56 @@ const MyProfile = ({phaseData, oneUserData}) => {
         // <h3>{oneUserData.email}</h3>
         // <h3>{oneUserData.links}</h3>
         // <h2>Create a New Post</h2>
-        // <form value={postFormData} onSubmit={handleSubmit}>
-        //     <input placeholder="Write you post here" name="body" onChange={handleChange}/>
-        //     <input placeholder="Add a link" name="link" onChange={handleChange}/>
-        //     <button>Post</button>
-        // </form>
-        // {profilePosts}
-        // </div>
+        // 
         <>
         <Navbar  variant="dark">
         <Container>
-          <Navbar.Brand  exact ><h1 >{oneUserData.name}'s Profile</h1></Navbar.Brand>
+          <Navbar.Brand className="text-muted text-white-50"><h1 >{oneUserData.name}'s Profile</h1></Navbar.Brand>
           <Nav className="text-center mt-4 mb-4">
-            <Nav.Link as={NavLink} to="/general-posts"><h5>General Posts</h5></Nav.Link>
-            <Nav.Link as={NavLink} to="/" exact><h5>Phase Posts</h5></Nav.Link>
-            <Nav.Link as={NavLink} to="/search-users"><h5>Search Users</h5></Nav.Link>
+            <Nav.Link ><h2 >{phaseData}</h2></Nav.Link>
             </Nav>
             <Nav className="justify-content-end">
-            <Nav.Link as={NavLink} to="/my-profile" className=""><a href="mailto:example@gmail.com">Send Email</a></Nav.Link>
-            {/* <Button onClick={handleClick} variant="dark" type="click" className="centered-button">Sign Out</Button> */}
+           <h3 className="text-muted text-white-50">{oneUserData.email}</h3>
           </Nav>
         </Container>
       </Navbar>
+      <Navbar  variant="dark">
         <Container>
-      <Nav className="justify-content-default" activeKey="/home">
-      <Navbar.Brand   exact ><h1 >Or right-aligned</h1></Navbar.Brand>
-        
-      </Nav>
-      <p className="text-center mt-4 mb-4">Or right-aligned</p>
-      <Nav className="justify-content-end" activeKey="/home">
-        <Nav.Item>
-          <Nav.Link href="/home">Active</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-1">Link</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-2">Link</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="disabled" disabled>
-            Disabled
-          </Nav.Link>
-        </Nav.Item>
-      </Nav>
-      </Container>
+          <Nav className="">
+            <h2 className="text-muted text-white-50">{oneUserData.bio}</h2>
+            </Nav>
+            <Nav className="justify-content-end">
+            <Nav.Link href="https://www.facebook.com/fsefsefsef.sfsefsefsef"><h3>{oneUserData.links}</h3></Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <Navbar  variant="dark">
+        <Container>
+        <Navbar.Brand ><h1 >{" "}</h1></Navbar.Brand>
+          <Nav className="text-center mt-4 mb-4">
+          <Form value={postFormData} onSubmit={handleSubmit} style={{ width: '35rem' }}>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <Form.Label><h5>Your Post</h5></Form.Label>
+                <Form.Control as="textarea" rows={5} placeholder="Write you post here" name="body" onChange={handleChange}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label><h5>Post's Link</h5></Form.Label>
+                <Form.Control type="text" placeholder="Add a link" name="link" onChange={handleChange}/>
+            </Form.Group>
+          <div className="col-md-12 text-center btn-group" style={{ width: '15rem' }}>
+          <Button variant="dark" type="submit" >
+          Post
+          </Button>
+          </div>
+          
+        </Form>
+            </Nav>
+            <Navbar.Brand ><h1 >{" "}</h1></Navbar.Brand>
+        </Container>
+      </Navbar>
+      <div className=" height">
+        // {profilePosts}
+        // </div>
     </>
     )
     
